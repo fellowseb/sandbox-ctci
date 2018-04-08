@@ -8,7 +8,7 @@
 #include <sstream>
 #include <vector>
 
-namespace fellowseb_sandbox_ctci
+namespace fellowseb_ctci
 {
 class runner
 {

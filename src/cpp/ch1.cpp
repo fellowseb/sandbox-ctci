@@ -19,7 +19,7 @@ using std::map;
 using std::string;
 using std::swap;
 
-namespace fellowseb_sandbox_ctci
+namespace fellowseb_ctci
 {
 
 void ch1::run(runner& rnr)

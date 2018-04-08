@@ -5,7 +5,7 @@
 #include <ostream>
 #include <string>
 
-namespace fellowseb_sandbox_ctci
+namespace fellowseb_ctci
 {
 
 class runner;
@@ -14,7 +14,7 @@ class runner;
  **/
 namespace ch1
 {
-    void run(fellowseb_sandbox_ctci::runner& rnr);
+    void run(fellowseb_ctci::runner& rnr);
     /**
      * 1.1
      * Implement an algorithm to determine if a string has
@@ -73,6 +73,6 @@ namespace ch1
     bool is_rotation(const std::string& str1,
                      const std::string& str2);
 }; // namespace ch1
-}; // namespace fellowseb_sandbox_ctci
+}; // namespace fellowseb_ctci
 
-#endif // CH1_1_HPP
+#endif // CH1_HPP

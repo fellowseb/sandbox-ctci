@@ -8,7 +8,7 @@
 
 using namespace std;
 
-namespace fellowseb_sandbox_ctci
+namespace fellowseb_ctci
 {
 
 runner::runner(int argc, char* argv[])
