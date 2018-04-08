@@ -1,0 +1,9 @@
+---
+Language: Cpp
+BasedOnStyle: WebKit
+BreakBeforeBraces: Allman
+AlignAfterOpenBracket: Align
+ReflowComments: true
+SortIncludes: true
+SortUsingDeclarations: true
+CompactNamespaces: true
