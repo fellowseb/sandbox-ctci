@@ -29,6 +29,8 @@
         "sstream": "cpp",
         "cstring": "cpp",
         "memory": "cpp",
-        "numeric": "cpp"
+        "numeric": "cpp",
+        "unordered_set": "cpp",
+        "list": "cpp"
     }
 }

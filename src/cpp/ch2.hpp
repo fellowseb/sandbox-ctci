@@ -2,6 +2,7 @@
 #define CH2_HPP
 
 #include "linked_list.hpp"
+#include <list>
 #include <unordered_set>
 
 namespace fellowseb_ctci
@@ -39,9 +40,8 @@ namespace ch2
      * 2.4
      * Write a function that adds the two numbers and returns the sum as a linked list.
      **/
-    template <typename T>
-    list_node<T>* sum_numbers(list_node<T>* number1,
-                              list_node<T>* number2);
+    list_node<int>* sum_numbers(list_node<int>* number1,
+                                list_node<int>* number2);
     /**
      * 2.5
      * Given a circular (corrupt) linked list, implement an algorithm which
@@ -143,14 +143,37 @@ bool fellowseb_ctci::ch2::remove_node(list_node<T>* node)
 }
 
 template <typename T>
-fellowseb_ctci::list_node<T>* fellowseb_ctci::ch2::sum_numbers(list_node<T>* number1,
-                                                               list_node<T>* number2)
-{
-}
-
-template <typename T>
 fellowseb_ctci::list_node<T>* fellowseb_ctci::ch2::loop_start(list_node<T>* head)
 {
+    list_node<T>* current = head;
+    if (head)
+    {
+        list_node<T>* current_times2 = head;
+        do
+        {
+            current = current->next;
+            current_times2 = current_times2->next;
+            if (current_times2)
+            {
+                current_times2 = current_times2->next;
+            }
+        } while (current
+                 && current_times2
+                 && current != current_times2);
+        if (current && current_times2)
+        {
+            while (head != current)
+            {
+                head = head->next;
+                current = current->next;
+            }
+        }
+        else
+        {
+            current = nullptr;
+        }
+    }
+    return current;
 }
 
 #endif // CH2_HPP
