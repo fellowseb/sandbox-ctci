@@ -16,13 +16,41 @@ class stack_base : private StoragePolicy
 {
 public:
     stack_base() {}
+    stack_base(const std::initializer_list<T>& il);
+    stack_base(const stack_base<T, StoragePolicy>& other);
+    //stack_base<T, StoragePolicy>& operator=(const stack_base<T, StoragePolicy>& other);
     void pop();
     const T& peek() const;
     T& peek();
     void push(const T& data);
     bool is_empty() const;
+    int size() const;
     void print(std::ostream& os) const;
 };
+
+template <typename T, typename StoragePolicy>
+stack_base<T, StoragePolicy>::stack_base(const stack_base<T, StoragePolicy>& other)
+    : StoragePolicy(other)
+{
+}
+
+template <typename T, typename StoragePolicy>
+stack_base<T, StoragePolicy>::stack_base(const std::initializer_list<T>& il)
+{
+    auto iter = il.begin();
+    auto iter_end = il.end();
+    for (; iter != iter_end; ++iter)
+    {
+        push(*iter);
+    }
+}
+
+// template <typename T, typename StoragePolicy>
+// stack_base<T, StoragePolicy>& stack_base<T, StoragePolicy>::operator=(const stack_base<T, StoragePolicy>& other)
+// {
+//     StoragePolicy::operator=(*this, other);
+//     return *this;
+// }
 
 template <typename T, typename StoragePolicy>
 void stack_base<T, StoragePolicy>::pop()
@@ -52,6 +80,12 @@ template <typename T, typename StoragePolicy>
 bool stack_base<T, StoragePolicy>::is_empty() const
 {
     return StoragePolicy::is_empty();
+}
+
+template <typename T, typename StoragePolicy>
+int stack_base<T, StoragePolicy>::size() const
+{
+    return StoragePolicy::size();
 }
 
 template <typename T, typename StoragePolicy>

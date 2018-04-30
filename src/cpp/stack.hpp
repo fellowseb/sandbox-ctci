@@ -1,10 +1,10 @@
 #ifndef STACK_HPP
 #define STACK_HPP
 
-#include "linked_list.hpp"
 #include "stack_base.hpp"
-#include <stdexcept>
+#include <list>
 #include <ostream>
+#include <stdexcept>
 
 namespace fellowseb_ctci
 {
@@ -17,19 +17,16 @@ template <typename T>
 class slsp
 {
 public:
-    slsp()
-        : top(nullptr)
-    {
-    }
     void pop();
     const T& peek() const;
     T& peek();
     void push(const T& data);
     bool is_empty() const;
-    void print(std::ostream &os) const;
+    int size() const;
+    void print(std::ostream& os) const;
 
 private:
-    list_node<T>* top;
+    std::list<T> l;
 };
 
 // Define 'normal' stack template type
@@ -43,62 +40,64 @@ using stack = stack_base<T, slsp<T>>;
 template <typename T>
 void slsp<T>::pop()
 {
-    if (!top)
+    if (l.empty())
     {
         throw std::logic_error("can't pop an empty stack");
     }
-    list_node<T>* popped = top;
-    top = top->next;
-    delete popped;
+    l.pop_front();
 }
 
 template <typename T>
 const T& slsp<T>::peek() const
 {
-    if (!top)
+    if (l.empty())
     {
         throw std::logic_error("empty stack");
     }
-    return top->data;
+    return *l.cbegin();
 }
 
 template <typename T>
 T& slsp<T>::peek()
 {
-    if (!top)
+    if (l.empty())
     {
         throw std::logic_error("empty stack");
     }
-    return top->data;
+    return *l.begin();
 }
 
 template <typename T>
 void slsp<T>::push(const T& data)
 {
-    list_node<T>* second = top;
-    top = new list_node<T>(data);
-    top->next = second;
+    l.push_front(data);
 }
 
 template <typename T>
 bool slsp<T>::is_empty() const
 {
-    return top == nullptr;
+    return l.empty();
+}
+
+template <typename T>
+int slsp<T>::size() const
+{
+    return l.size();
 }
 
 template <typename T>
 void slsp<T>::print(std::ostream& os) const
 {
-    list_node<T> *current_node = top;
-    while (current_node)
+    if (l.empty())
+        return;
+    auto iter = l.cbegin();
+    const auto iter_end = --(l.cend());
+    for (; iter != iter_end; iter++)
     {
-        os << current_node->data;
-        current_node = current_node->next;
-        if (current_node)
-        {
-            os << "->";
-        }
+        os << *iter;
+        os << "->";
     }
+    os << *iter;
 }
 };
 #endif //STACK_HPP

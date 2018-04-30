@@ -12,8 +12,6 @@ public:
     list_node(T data)
         : data(data)
         , next(nullptr){};
-    // list_node(const list_node& other);
-    // list_node<T> operator=(const list_node<T>& other);
     void append(T data);
     void print(std::ostream& os) const;
 
